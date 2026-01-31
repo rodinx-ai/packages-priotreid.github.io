@@ -19,16 +19,18 @@
             box-sizing: border-box;
         }
 
-        /* ==================== VARIABLES (RodinX.ai Design System) ==================== */
+        /* ==================== VARIABLES (Оранжевая гамма) ==================== */
         :root {
-            /* Colors */
-            --primary: #3498DB;
-            --primary-hover: #2980B9;
+            /* Colors - Orange Theme */
+            --primary: #FF6B35;
+            --primary-hover: #E85A2A;
+            --accent: #C92A2A;
             --text-primary: #2C3E50;
             --text-secondary: #7F8C8D;
             --bg-white: #FFFFFF;
-            --bg-light: #ECF0F1;
-            --border: #E0E0E0;
+            --bg-light: #FFF5F0;
+            --bg-texture: #FFE8DC;
+            --border: #FFD4C4;
             --success: #2ECC71;
             --error: #E74C3C;
 
@@ -90,6 +92,23 @@
             height: auto;
         }
 
+        /* ==================== TEXTURE OVERLAY ==================== */
+        .texture-bg {
+            position: relative;
+        }
+
+        .texture-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,107,53,0.03) 2px, rgba(255,107,53,0.03) 4px);
+            pointer-events: none;
+        }
+
         /* ==================== COMPONENTS ==================== */
 
         /* Container */
@@ -114,13 +133,13 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all var(--transition);
-            box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0px 2px 8px rgba(255,107,53,0.2);
         }
 
         .btn:hover {
             background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0px 4px 12px rgba(255,107,53,0.3);
         }
 
         .btn-secondary {
@@ -133,19 +152,29 @@
             background: var(--bg-light);
         }
 
+        .btn-accent {
+            background: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background: #A81F1F;
+        }
+
         /* Card */
         .card {
             background: var(--bg-white);
             border: 1px solid var(--border);
             border-radius: var(--border-radius);
             padding: var(--space-l);
-            box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0px 2px 8px rgba(255,107,53,0.1);
             transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            box-shadow: 0px 8px 16px rgba(255,107,53,0.2);
         }
 
         /* ==================== NAVIGATION ==================== */
@@ -159,7 +188,7 @@
         }
 
         .nav.scrolled {
-            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0px 2px 8px rgba(255,107,53,0.15);
         }
 
         .nav-container {
@@ -174,6 +203,12 @@
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-l);
         }
 
         .nav-menu {
@@ -193,14 +228,40 @@
             color: var(--primary);
         }
 
+        .nav-contacts {
+            display: flex;
+            gap: var(--space-m);
+            align-items: center;
+        }
+
+        .nav-contact-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all var(--transition);
+        }
+
+        .nav-contact-icon:hover {
+            background: var(--primary-hover);
+            transform: scale(1.1);
+        }
+
         /* ==================== HERO SECTION ==================== */
         .hero {
             position: relative;
-            min-height: 600px;
+            min-height: 700px;
             display: flex;
             align-items: center;
             overflow: hidden;
-            background: linear-gradient(135deg, #E0F2FE 0%, var(--bg-white) 100%);
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1600&q=80') center/cover;
         }
 
         #hero-canvas {
@@ -209,26 +270,63 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.15;
+            opacity: 0.2;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xxl);
+            align-items: center;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-            padding: var(--space-xxl) 0;
+            color: white;
+        }
+
+        .hero-content h1 {
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
         }
 
         .hero-subtitle {
             font-size: 18px;
-            color: var(--text-secondary);
             margin-bottom: var(--space-l);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
         }
 
         .hero-cta {
             display: flex;
             gap: var(--space-m);
             flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            background: rgba(255,255,255,0.95);
+            border-radius: var(--border-radius);
+            padding: var(--space-l);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-l);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: var(--space-xs);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
         }
 
         /* ==================== SECTIONS ==================== */
@@ -239,6 +337,7 @@
         .section-title {
             text-align: center;
             margin-bottom: var(--space-xl);
+            color: var(--text-primary);
         }
 
         .bg-light {
@@ -274,23 +373,39 @@
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: var(--space-m);
-            background: var(--bg-light);
+            background: var(--bg-texture);
         }
 
         .catalog-card h3 {
             margin-bottom: var(--space-s);
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .catalog-card p {
             color: var(--text-secondary);
             font-size: 14px;
             margin-bottom: var(--space-m);
+            flex-grow: 1;
+        }
+
+        .catalog-card .btn {
+            margin-top: auto;
         }
 
         /* ==================== PACKAGES ==================== */
         .package-card {
             text-align: center;
-            position: relative;
+        }
+
+        .package-card h3 {
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
         }
 
         .package-price {
@@ -304,6 +419,7 @@
             list-style: none;
             text-align: left;
             margin-bottom: var(--space-l);
+            flex-grow: 1;
         }
 
         .package-list li {
@@ -316,8 +432,49 @@
             content: "✓";
             position: absolute;
             left: 0;
-            color: var(--success);
+            color: var(--primary);
             font-weight: 700;
+        }
+
+        .package-card .btn {
+            margin-top: auto;
+        }
+
+        /* ==================== CALCULATOR ==================== */
+        .calculator {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: var(--space-l);
+            box-shadow: 0px 4px 16px rgba(255,107,53,0.15);
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-m);
+            margin-bottom: var(--space-l);
+        }
+
+        .calc-result {
+            background: var(--bg-light);
+            padding: var(--space-l);
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--primary);
+        }
+
+        .calc-price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .calc-note {
+            font-size: 14px;
+            color: var(--text-secondary);
         }
 
         /* ==================== FORM ==================== */
@@ -348,7 +505,7 @@
         .form-select:focus {
             outline: none;
             border: 2px solid var(--primary);
-            box-shadow: 0px 0px 0px 3px rgba(52,152,219,0.1);
+            box-shadow: 0px 0px 0px 3px rgba(255,107,53,0.1);
         }
 
         .form-textarea {
@@ -404,8 +561,31 @@
                 display: none;
             }
 
+            .nav-contacts {
+                gap: var(--space-s);
+            }
+
+            .nav-contact-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+
             .hero {
-                min-height: 500px;
+                min-height: 600px;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-m);
+            }
+
+            .stat-number {
+                font-size: 36px;
             }
 
             .hero-cta {
@@ -414,6 +594,10 @@
 
             .btn {
                 width: 100%;
+            }
+
+            .calc-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -425,12 +609,19 @@
         <div class="container">
             <div class="nav-container">
                 <a href="#" class="nav-logo">ПриоТрейд</a>
-                <ul class="nav-menu">
-                    <li><a href="#catalog" class="nav-link">Каталог</a></li>
-                    <li><a href="#packages" class="nav-link">Пакеты</a></li>
-                    <li><a href="#form" class="nav-link">Заказать</a></li>
-                    <li><a href="#contacts" class="nav-link">Контакты</a></li>
-                </ul>
+                <div class="nav-right">
+                    <ul class="nav-menu">
+                        <li><a href="#catalog" class="nav-link">Каталог</a></li>
+                        <li><a href="#packages" class="nav-link">Пакеты</a></li>
+                        <li><a href="#calculator" class="nav-link">Калькулятор</a></li>
+                        <li><a href="#form" class="nav-link">Заказать</a></li>
+                    </ul>
+                    <div class="nav-contacts">
+                        <a href="tel:+79001234567" class="nav-contact-icon" title="Позвонить">📞</a>
+                        <a href="https://wa.me/79001234567?text=Здравствуйте,%20хочу%20заказать%20упаковку%20для%20пиццерии" class="nav-contact-icon" target="_blank" title="WhatsApp">💬</a>
+                        <a href="https://t.me/priotrade" class="nav-contact-icon" target="_blank" title="Telegram">✈️</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -439,58 +630,79 @@
     <section class="hero">
         <canvas id="hero-canvas"></canvas>
         <div class="container">
-            <div class="hero-content">
-                <h1>Упаковка для пиццерий под ключ</h1>
-                <p class="hero-subtitle">
-                    Коробки с вашим логотипом + дизайн меню + брендирование машин доставки. 
-                    Производство в Обнинске, доставка по всей России.
-                </p>
-                <div class="hero-cta">
-                    <a href="#form" class="btn">Рассчитать стоимость</a>
-                    <a href="#packages" class="btn btn-secondary">Посмотреть пакеты</a>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Упаковка для пиццерий под ключ</h1>
+                    <p class="hero-subtitle">
+                        Коробки с вашим логотипом + дизайн меню + брендирование машин доставки. 
+                        Производство в Обнинске, доставка по всей России.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#calculator" class="btn">Рассчитать стоимость</a>
+                        <a href="#packages" class="btn btn-secondary">Посмотреть пакеты</a>
+                    </div>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Довольных клиентов</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50 000+</div>
+                        <div class="stat-label">Изготовленных коробок</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5-10</div>
+                        <div class="stat-label">Дней производство</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Гарантия качества</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CATALOG SECTION -->
-    <section id="catalog">
+    <section id="catalog" class="texture-bg">
         <div class="container">
             <h2 class="section-title">Что мы производим</h2>
             <div class="grid grid-4">
                 <div class="card catalog-card">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23ECF0F1' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter' font-size='20' fill='%237F8C8D'%3EКоробки для пиццы%3C/text%3E%3C/svg%3E" alt="Коробки для пиццы">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" alt="Коробки для пиццы">
                     <h3>Коробки для пиццы</h3>
                     <p>Размеры 25/30/33/40 см. Плотный гофрокартон. От 300 шт.</p>
-                    <a href="#form" class="btn">Узнать цену</a>
+                    <a href="#calculator" class="btn">Узнать цену</a>
                 </div>
 
                 <div class="card catalog-card">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23ECF0F1' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter' font-size='20' fill='%237F8C8D'%3EПечать логотипа%3C/text%3E%3C/svg%3E" alt="Печать логотипа">
+                    <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=400&q=80" alt="Печать логотипа">
                     <h3>Печать вашего логотипа</h3>
                     <p>1-4 цвета. Макет бесплатно. Тираж от 500 шт.</p>
-                    <a href="#form" class="btn">Заказать</a>
+                    <a href="#calculator" class="btn">Заказать</a>
                 </div>
 
                 <div class="card catalog-card">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23ECF0F1' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter' font-size='20' fill='%237F8C8D'%3EКрафт-упаковка%3C/text%3E%3C/svg%3E" alt="Крафт-упаковка">
+                    <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=400&q=80" alt="Крафт-упаковка">
                     <h3>Крафт-упаковка</h3>
                     <p>Эко-коробки для премиум-сегмента. Натуральный картон.</p>
-                    <a href="#form" class="btn">Узнать цену</a>
+                    <a href="#calculator" class="btn">Узнать цену</a>
                 </div>
 
                 <div class="card catalog-card">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23ECF0F1' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter' font-size='20' fill='%237F8C8D'%3EПакеты и стикеры%3C/text%3E%3C/svg%3E" alt="Пакеты и стикеры">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80" alt="Пакеты и стикеры">
                     <h3>Пакеты, стикеры, салфетки</h3>
                     <p>Всё для комплектации заказа. Фирменный стиль.</p>
-                    <a href="#form" class="btn">Заказать</a>
+                    <a href="#calculator" class="btn">Заказать</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- PACKAGES SECTION -->
-    <section id="packages" class="bg-light">
+    <section id="packages" class="bg-light texture-bg">
         <div class="container">
             <h2 class="section-title">Готовые решения для вашей пиццерии</h2>
             <div class="grid grid-3">
@@ -507,7 +719,7 @@
                 </div>
 
                 <div class="card package-card">
-                    <h3>Ребрендинг пиццерии</h3>
+                    <h3>Ребрендинг</h3>
                     <p class="package-price">Рассчитаем индивидуально</p>
                     <ul class="package-list">
                         <li>Новый дизайн коробок</li>
@@ -533,10 +745,62 @@
         </div>
     </section>
 
-    <!-- FORM SECTION -->
-    <section id="form">
+    <!-- CALCULATOR SECTION -->
+    <section id="calculator">
         <div class="container">
-            <h2 class="section-title">Рассчитайте стоимость вашего заказа</h2>
+            <h2 class="section-title">Калькулятор стоимости</h2>
+            <div class="calculator texture-bg">
+                <div class="calc-grid">
+                    <div class="form-group">
+                        <label class="form-label">Тип упаковки</label>
+                        <select class="form-select" id="calc-type">
+                            <option value="standard">Стандартные коробки</option>
+                            <option value="branded">С логотипом</option>
+                            <option value="kraft">Крафт-упаковка</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Размер (см)</label>
+                        <select class="form-select" id="calc-size">
+                            <option value="25">25 см</option>
+                            <option value="30">30 см</option>
+                            <option value="33">33 см</option>
+                            <option value="40">40 см</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Тираж (шт)</label>
+                        <input type="number" class="form-input" id="calc-quantity" value="500" min="100" step="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Доставка в город</label>
+                        <select class="form-select" id="calc-delivery">
+                            <option value="local">Обнинск/Калуга</option>
+                            <option value="moscow">Москва</option>
+                            <option value="regional">Регионы</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="calc-result">
+                    <div class="calc-price" id="calc-total">~ 12 500 ₽</div>
+                    <div class="calc-note">Ориентировочная стоимость. Точный расчёт после заявки.</div>
+                </div>
+
+                <div style="text-align: center; margin-top: var(--space-l);">
+                    <a href="#form" class="btn btn-accent">Заказать по этой цене</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM SECTION -->
+    <section id="form" class="bg-light texture-bg">
+        <div class="container">
+            <h2 class="section-title">Оставьте заявку на расчёт</h2>
             <div style="max-width: 600px; margin: 0 auto;">
                 <form id="order-form" class="card">
                     <div class="form-group">
@@ -578,7 +842,7 @@
                         <textarea class="form-textarea" name="comment" placeholder="Расскажите подробнее о вашем проекте..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
+                    <button type="submit" class="btn btn-accent" style="width: 100%;">Отправить заявку</button>
 
                     <p style="font-size: 14px; color: var(--text-secondary); margin-top: var(--space-m); text-align: center;">
                         Мы свяжемся с вами в течение 2 часов
@@ -609,6 +873,7 @@
                     <h3>Услуги</h3>
                     <p><a href="#catalog">Каталог упаковки</a></p>
                     <p><a href="#packages">Готовые пакеты</a></p>
+                    <p><a href="#calculator">Калькулятор</a></p>
                     <p><a href="#form">Заказать расчёт</a></p>
                 </div>
 
@@ -627,7 +892,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 ПриоТрейд. Все права защищены.</p>
+                <p>&copy; 2026 ПриоТрейд. Все права защищены. | Дизайн: RodinX.ai Team (Энсо)</p>
             </div>
         </div>
     </footer>
@@ -643,7 +908,7 @@
             }
         });
 
-        // ==================== GENERATIVE BACKGROUND (Hero Canvas) ====================
+        // ==================== GENERATIVE BACKGROUND ====================
         const canvas = document.getElementById('hero-canvas');
         const ctx = canvas.getContext('2d');
 
@@ -655,16 +920,16 @@
         window.addEventListener('resize', resizeCanvas);
 
         const circles = [];
-        const circleCount = 15;
+        const circleCount = 20;
 
         for (let i = 0; i < circleCount; i++) {
             circles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 80 + 40,
-                speedX: (Math.random() - 0.5) * 0.3,
-                speedY: (Math.random() - 0.5) * 0.3,
-                opacity: Math.random() * 0.3 + 0.1
+                radius: Math.random() * 100 + 50,
+                speedX: (Math.random() - 0.5) * 0.4,
+                speedY: (Math.random() - 0.5) * 0.4,
+                opacity: Math.random() * 0.2 + 0.1
             });
         }
 
@@ -680,13 +945,53 @@
 
                 ctx.beginPath();
                 ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(52, 152, 219, ${circle.opacity})`;
+                ctx.fillStyle = `rgba(255, 107, 53, ${circle.opacity})`;
                 ctx.fill();
             });
 
             requestAnimationFrame(animateCircles);
         }
         animateCircles();
+
+        // ==================== CALCULATOR ====================
+        const calcType = document.getElementById('calc-type');
+        const calcSize = document.getElementById('calc-size');
+        const calcQuantity = document.getElementById('calc-quantity');
+        const calcDelivery = document.getElementById('calc-delivery');
+        const calcTotal = document.getElementById('calc-total');
+
+        const prices = {
+            standard: {25: 18, 30: 22, 33: 25, 40: 30},
+            branded: {25: 28, 30: 32, 33: 35, 40: 40},
+            kraft: {25: 35, 30: 40, 33: 45, 40: 50}
+        };
+
+        const deliveryPrices = {
+            local: 0,
+            moscow: 1500,
+            regional: 3000
+        };
+
+        function calculatePrice() {
+            const type = calcType.value;
+            const size = parseInt(calcSize.value);
+            const quantity = parseInt(calcQuantity.value);
+            const delivery = calcDelivery.value;
+
+            const pricePerUnit = prices[type][size];
+            const subtotal = pricePerUnit * quantity;
+            const deliveryCost = deliveryPrices[delivery];
+            const total = subtotal + deliveryCost;
+
+            calcTotal.textContent = `~ ${total.toLocaleString('ru-RU')} ₽`;
+        }
+
+        calcType.addEventListener('change', calculatePrice);
+        calcSize.addEventListener('change', calculatePrice);
+        calcQuantity.addEventListener('input', calculatePrice);
+        calcDelivery.addEventListener('change', calculatePrice);
+
+        calculatePrice();
 
         // ==================== SMOOTH SCROLL ====================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -713,25 +1018,6 @@
                 data[key] = value;
             });
 
-            // ВАРИАНТ 1: Отправка в Telegram-бот (нужно настроить)
-            // const telegramBotToken = 'YOUR_BOT_TOKEN';
-            // const telegramChatId = 'YOUR_CHAT_ID';
-            // const message = `Новая заявка:\n\nИмя: ${data.name}\nКонтакт: ${data.contact}\nУслуга: ${data.service}\nТираж: ${data.quantity}\nГород: ${data.city}\nКомментарий: ${data.comment}`;
-            // fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
-            //     method: 'POST',
-            //     headers: {'Content-Type': 'application/json'},
-            //     body: JSON.stringify({chat_id: telegramChatId, text: message})
-            // });
-
-            // ВАРИАНТ 2: Formspree (бесплатный сервис для форм)
-            // Замените 'YOUR_FORM_ID' на ID из formspree.io
-            // fetch('https://formspree.io/f/YOUR_FORM_ID', {
-            //     method: 'POST',
-            //     body: formData,
-            //     headers: {'Accept': 'application/json'}
-            // });
-
-            // Пока просто показываем alert (замените на реальную отправку)
             alert('Спасибо за заявку! Мы свяжемся с вами в течение 2 часов.\n\nДанные:\n' + JSON.stringify(data, null, 2));
             form.reset();
         });
