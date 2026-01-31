@@ -1,1 +1,741 @@
-Hello World
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Упаковка для пиццерий под ключ: коробки с логотипом, меню, брендирование машин. Производство ПриоТрейд, Обнинск. Доставка по России.">
+    <title>Упаковка для Пиццерий под Ключ | ПриоТрейд</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==================== RESET ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ==================== VARIABLES (RodinX.ai Design System) ==================== */
+        :root {
+            /* Colors */
+            --primary: #3498DB;
+            --primary-hover: #2980B9;
+            --text-primary: #2C3E50;
+            --text-secondary: #7F8C8D;
+            --bg-white: #FFFFFF;
+            --bg-light: #ECF0F1;
+            --border: #E0E0E0;
+            --success: #2ECC71;
+            --error: #E74C3C;
+
+            /* Typography (Fibonacci scale) */
+            --font-body: 16px;
+            --font-h3: 26px;
+            --font-h2: 42px;
+            --font-h1: 68px;
+
+            /* Spacing (Fibonacci) */
+            --space-xs: 8px;
+            --space-s: 13px;
+            --space-m: 21px;
+            --space-l: 34px;
+            --space-xl: 55px;
+            --space-xxl: 89px;
+
+            /* Layout */
+            --max-width: 1200px;
+            --border-radius: 12px;
+            --transition: 0.3s ease;
+        }
+
+        /* ==================== BASE STYLES ==================== */
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-white);
+        }
+
+        h1, h2, h3 {
+            line-height: 1.2;
+            font-weight: 700;
+            margin-bottom: var(--space-m);
+        }
+
+        h1 {
+            font-size: clamp(42px, 5vw, var(--font-h1));
+        }
+
+        h2 {
+            font-size: clamp(32px, 4vw, var(--font-h2));
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: var(--font-h3);
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: var(--space-m);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ==================== COMPONENTS ==================== */
+
+        /* Container */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-l);
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: var(--space-s) var(--space-l);
+            min-width: 180px;
+            background: var(--primary);
+            color: var(--bg-white);
+            font-size: var(--font-body);
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-light);
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: var(--space-l);
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
+            transition: all var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: box-shadow var(--transition);
+        }
+
+        .nav.scrolled {
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: var(--space-l);
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #E0F2FE 0%, var(--bg-white) 100%);
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            padding: var(--space-xxl) 0;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-l);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: var(--space-m);
+            flex-wrap: wrap;
+        }
+
+        /* ==================== SECTIONS ==================== */
+        section {
+            padding: var(--space-xxl) 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .bg-light {
+            background: var(--bg-light);
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: var(--space-l);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* ==================== CATALOG ==================== */
+        .catalog-card {
+            text-align: center;
+        }
+
+        .catalog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: var(--space-m);
+            background: var(--bg-light);
+        }
+
+        .catalog-card h3 {
+            margin-bottom: var(--space-s);
+        }
+
+        .catalog-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: var(--space-m);
+        }
+
+        /* ==================== PACKAGES ==================== */
+        .package-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .package-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-s);
+        }
+
+        .package-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: var(--space-l);
+        }
+
+        .package-list li {
+            padding: var(--space-xs) 0;
+            padding-left: var(--space-l);
+            position: relative;
+        }
+
+        .package-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        /* ==================== FORM ==================== */
+        .form-group {
+            margin-bottom: var(--space-m);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-weight: 600;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: var(--space-s) var(--space-m);
+            font-size: var(--font-body);
+            font-family: 'Inter', sans-serif;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all var(--transition);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border: 2px solid var(--primary);
+            box-shadow: 0px 0px 0px 3px rgba(52,152,219,0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--text-primary);
+            color: var(--bg-light);
+            padding: var(--space-xl) 0 var(--space-l);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-l);
+            margin-bottom: var(--space-l);
+        }
+
+        .footer h3 {
+            color: var(--bg-white);
+            margin-bottom: var(--space-m);
+        }
+
+        .footer p,
+        .footer a {
+            color: var(--bg-light);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-l);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            :root {
+                --font-h1: 42px;
+                --font-h2: 32px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hero {
+                min-height: 500px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="nav-logo">ПриоТрейд</a>
+                <ul class="nav-menu">
+                    <li><a href="#catalog" class="nav-link">Каталог</a></li>
+                    <li><a href="#packages" class="nav-link">Пакеты</a></li>
+                    <li><a href="#form" class="nav-link">Заказать</a></li>
+                    <li><a href="#contacts" class="nav-link">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Упаковка для пиццерий под ключ</h1>
+                <p class="hero-subtitle">
+                    Коробки с вашим логотипом + дизайн меню + брендирование машин доставки. 
+                    Производство в Обнинске, доставка по всей России.
+                </p>
+                <div class="hero-cta">
+                    <a href="#form" class="btn">Рассчитать стоимость</a>
+                    <a href="#packages" class="btn btn-secondary">Посмотреть пакеты</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATALOG SECTION -->
+    <section id="catalog">
+        <div class="container">
+            <h2 class="section-title">Что мы производим</h2>
+            <div class="grid grid-4">
+                <div class="card catalog-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23ECF0F1' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter' font-size='20' fill='%237F8C8D'%3EКоробки для пиццы%3C/text%3E%3C/svg%3E" alt="Коробки для пиццы">
+                    <h3>Коробки для пиццы</h3>
+                    <p>Размеры 25/30/33/40 см. Плотный гофрокартон. От 300 шт.</p>
+                    <a href="#form" class="btn">Узнать цену</a>
+                </div>
+
+                <div class="card catalog-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23ECF0F1' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter' font-size='20' fill='%237F8C8D'%3EПечать логотипа%3C/text%3E%3C/svg%3E" alt="Печать логотипа">
+                    <h3>Печать вашего логотипа</h3>
+                    <p>1-4 цвета. Макет бесплатно. Тираж от 500 шт.</p>
+                    <a href="#form" class="btn">Заказать</a>
+                </div>
+
+                <div class="card catalog-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23ECF0F1' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter' font-size='20' fill='%237F8C8D'%3EКрафт-упаковка%3C/text%3E%3C/svg%3E" alt="Крафт-упаковка">
+                    <h3>Крафт-упаковка</h3>
+                    <p>Эко-коробки для премиум-сегмента. Натуральный картон.</p>
+                    <a href="#form" class="btn">Узнать цену</a>
+                </div>
+
+                <div class="card catalog-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23ECF0F1' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter' font-size='20' fill='%237F8C8D'%3EПакеты и стикеры%3C/text%3E%3C/svg%3E" alt="Пакеты и стикеры">
+                    <h3>Пакеты, стикеры, салфетки</h3>
+                    <p>Всё для комплектации заказа. Фирменный стиль.</p>
+                    <a href="#form" class="btn">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PACKAGES SECTION -->
+    <section id="packages" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">Готовые решения для вашей пиццерии</h2>
+            <div class="grid grid-3">
+                <div class="card package-card">
+                    <h3>Стартовый комплект</h3>
+                    <p class="package-price">Рассчитаем индивидуально</p>
+                    <ul class="package-list">
+                        <li>Коробки 3 размера (300 шт)</li>
+                        <li>Дизайн и печать меню (50 шт)</li>
+                        <li>Стикеры с логотипом (200 шт)</li>
+                        <li>Базовый фирменный стиль</li>
+                    </ul>
+                    <a href="#form" class="btn">Запросить комплект</a>
+                </div>
+
+                <div class="card package-card">
+                    <h3>Ребрендинг пиццерии</h3>
+                    <p class="package-price">Рассчитаем индивидуально</p>
+                    <ul class="package-list">
+                        <li>Новый дизайн коробок</li>
+                        <li>Редизайн меню с акциями</li>
+                        <li>Брендирование 1 машины</li>
+                        <li>Обновление фирменного стиля</li>
+                    </ul>
+                    <a href="#form" class="btn">Заказать ребрендинг</a>
+                </div>
+
+                <div class="card package-card">
+                    <h3>Пакет "Доставка"</h3>
+                    <p class="package-price">Рассчитаем индивидуально</p>
+                    <ul class="package-list">
+                        <li>Коробки с логотипом (500 шт)</li>
+                        <li>Меню с акциями (100 шт)</li>
+                        <li>Частичная оклейка авто</li>
+                        <li>Визитки и стикеры</li>
+                    </ul>
+                    <a href="#form" class="btn">Заказать пакет</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM SECTION -->
+    <section id="form">
+        <div class="container">
+            <h2 class="section-title">Рассчитайте стоимость вашего заказа</h2>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <form id="order-form" class="card">
+                    <div class="form-group">
+                        <label class="form-label">Ваше имя</label>
+                        <input type="text" class="form-input" name="name" required placeholder="Иван">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Контакт (телефон, email или Telegram)</label>
+                        <input type="text" class="form-input" name="contact" required placeholder="+7 (900) 123-45-67 или @username">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Что вам нужно?</label>
+                        <select class="form-select" name="service" required>
+                            <option value="">Выберите услугу</option>
+                            <option value="boxes">Коробки для пиццы</option>
+                            <option value="branding">Коробки с логотипом</option>
+                            <option value="menu">Дизайн и печать меню</option>
+                            <option value="car">Брендирование машины</option>
+                            <option value="starter">Стартовый комплект</option>
+                            <option value="rebrand">Ребрендинг</option>
+                            <option value="delivery">Пакет "Доставка"</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Тираж (количество)</label>
+                        <input type="text" class="form-input" name="quantity" placeholder="Например: 500 шт">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Ваш город</label>
+                        <input type="text" class="form-input" name="city" placeholder="Москва">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Комментарий (необязательно)</label>
+                        <textarea class="form-textarea" name="comment" placeholder="Расскажите подробнее о вашем проекте..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
+
+                    <p style="font-size: 14px; color: var(--text-secondary); margin-top: var(--space-m); text-align: center;">
+                        Мы свяжемся с вами в течение 2 часов
+                    </p>
+                </form>
+
+                <div style="text-align: center; margin-top: var(--space-l);">
+                    <p style="margin-bottom: var(--space-m);">Или напишите нам напрямую:</p>
+                    <div style="display: flex; gap: var(--space-m); justify-content: center; flex-wrap: wrap;">
+                        <a href="https://wa.me/79001234567?text=Здравствуйте,%20хочу%20заказать%20упаковку%20для%20пиццерии" class="btn btn-secondary" target="_blank">WhatsApp</a>
+                        <a href="https://t.me/priotrade" class="btn btn-secondary" target="_blank">Telegram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contacts">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>ПриоТрейд</h3>
+                    <p>Производство упаковки для HoReCa. Коробки, меню, брендирование — всё под ключ.</p>
+                </div>
+
+                <div>
+                    <h3>Услуги</h3>
+                    <p><a href="#catalog">Каталог упаковки</a></p>
+                    <p><a href="#packages">Готовые пакеты</a></p>
+                    <p><a href="#form">Заказать расчёт</a></p>
+                </div>
+
+                <div>
+                    <h3>Контакты</h3>
+                    <p>Телефон: <a href="tel:+79001234567">+7 (900) 123-45-67</a></p>
+                    <p>Email: <a href="mailto:info@priotrade.ru">info@priotrade.ru</a></p>
+                    <p>Адрес: г. Обнинск, Калужская область</p>
+                </div>
+
+                <div>
+                    <h3>Мессенджеры</h3>
+                    <p><a href="https://wa.me/79001234567" target="_blank">WhatsApp</a></p>
+                    <p><a href="https://t.me/priotrade" target="_blank">Telegram</a></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 ПриоТрейд. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== STICKY NAV ====================
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ==================== GENERATIVE BACKGROUND (Hero Canvas) ====================
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const circles = [];
+        const circleCount = 15;
+
+        for (let i = 0; i < circleCount; i++) {
+            circles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 80 + 40,
+                speedX: (Math.random() - 0.5) * 0.3,
+                speedY: (Math.random() - 0.5) * 0.3,
+                opacity: Math.random() * 0.3 + 0.1
+            });
+        }
+
+        function animateCircles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            circles.forEach(circle => {
+                circle.x += circle.speedX;
+                circle.y += circle.speedY;
+
+                if (circle.x < 0 || circle.x > canvas.width) circle.speedX *= -1;
+                if (circle.y < 0 || circle.y > canvas.height) circle.speedY *= -1;
+
+                ctx.beginPath();
+                ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(52, 152, 219, ${circle.opacity})`;
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animateCircles);
+        }
+        animateCircles();
+
+        // ==================== SMOOTH SCROLL ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ==================== FORM HANDLING ====================
+        const form = document.getElementById('order-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // ВАРИАНТ 1: Отправка в Telegram-бот (нужно настроить)
+            // const telegramBotToken = 'YOUR_BOT_TOKEN';
+            // const telegramChatId = 'YOUR_CHAT_ID';
+            // const message = `Новая заявка:\n\nИмя: ${data.name}\nКонтакт: ${data.contact}\nУслуга: ${data.service}\nТираж: ${data.quantity}\nГород: ${data.city}\nКомментарий: ${data.comment}`;
+            // fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+            //     method: 'POST',
+            //     headers: {'Content-Type': 'application/json'},
+            //     body: JSON.stringify({chat_id: telegramChatId, text: message})
+            // });
+
+            // ВАРИАНТ 2: Formspree (бесплатный сервис для форм)
+            // Замените 'YOUR_FORM_ID' на ID из formspree.io
+            // fetch('https://formspree.io/f/YOUR_FORM_ID', {
+            //     method: 'POST',
+            //     body: formData,
+            //     headers: {'Accept': 'application/json'}
+            // });
+
+            // Пока просто показываем alert (замените на реальную отправку)
+            alert('Спасибо за заявку! Мы свяжемся с вами в течение 2 часов.\n\nДанные:\n' + JSON.stringify(data, null, 2));
+            form.reset();
+        });
+    </script>
+
+</body>
+</html>
